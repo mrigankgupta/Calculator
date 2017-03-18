@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A00E6101E7B9D40005E7567 /* CalculateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00E60F1E7B9D40005E7567 /* CalculateViewModel.swift */; };
+		3A00E6141E7BA501005E7567 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00E6131E7BA501005E7567 /* Stack.swift */; };
 		3AD6A7681E6F02D400D1C7EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A7671E6F02D400D1C7EB /* AppDelegate.swift */; };
 		3AD6A76A1E6F02D400D1C7EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A7691E6F02D400D1C7EB /* ViewController.swift */; };
-		3AD6A76D1E6F02D400D1C7EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6A76B1E6F02D400D1C7EB /* Main.storyboard */; };
+		3AD6A76D1E6F02D400D1C7EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6A76B1E6F02D400D1C7EB /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		3AD6A76F1E6F02D400D1C7EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6A76E1E6F02D400D1C7EB /* Assets.xcassets */; };
 		3AD6A7721E6F02D400D1C7EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6A7701E6F02D400D1C7EB /* LaunchScreen.storyboard */; };
 		3AD6A77D1E6F02D400D1C7EB /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A77C1E6F02D400D1C7EB /* CalculatorTests.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A00E60F1E7B9D40005E7567 /* CalculateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateViewModel.swift; sourceTree = "<group>"; };
+		3A00E6131E7BA501005E7567 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = ../Stack.swift; sourceTree = "<group>"; };
 		3AD6A7641E6F02D400D1C7EB /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD6A7671E6F02D400D1C7EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AD6A7691E6F02D400D1C7EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,8 +81,10 @@
 		3AD6A7661E6F02D400D1C7EB /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				3A00E6131E7BA501005E7567 /* Stack.swift */,
 				3AD6A7671E6F02D400D1C7EB /* AppDelegate.swift */,
 				3AD6A7691E6F02D400D1C7EB /* ViewController.swift */,
+				3A00E60F1E7B9D40005E7567 /* CalculateViewModel.swift */,
 				3AD6A76B1E6F02D400D1C7EB /* Main.storyboard */,
 				3AD6A76E1E6F02D400D1C7EB /* Assets.xcassets */,
 				3AD6A7701E6F02D400D1C7EB /* LaunchScreen.storyboard */,
@@ -140,6 +146,9 @@
 		3AD6A75C1E6F02D300D1C7EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+				);
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Gupta, Mrigank";
@@ -201,7 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A00E6141E7BA501005E7567 /* Stack.swift in Sources */,
 				3AD6A76A1E6F02D400D1C7EB /* ViewController.swift in Sources */,
+				3A00E6101E7B9D40005E7567 /* CalculateViewModel.swift in Sources */,
 				3AD6A7681E6F02D400D1C7EB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +421,7 @@
 				3AD6A7831E6F02D400D1C7EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AD6A7841E6F02D400D1C7EB /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +430,7 @@
 				3AD6A7861E6F02D400D1C7EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
