@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A00E6101E7B9D40005E7567 /* CalculateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00E60F1E7B9D40005E7567 /* CalculateViewModel.swift */; };
 		3A00E6141E7BA501005E7567 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A00E6131E7BA501005E7567 /* Stack.swift */; };
+		3A760D591E7D0DC40008D144 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A760D581E7D0DC40008D144 /* Operation.swift */; };
 		3AD6A7681E6F02D400D1C7EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A7671E6F02D400D1C7EB /* AppDelegate.swift */; };
 		3AD6A76A1E6F02D400D1C7EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A7691E6F02D400D1C7EB /* ViewController.swift */; };
 		3AD6A76D1E6F02D400D1C7EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AD6A76B1E6F02D400D1C7EB /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		3A00E60F1E7B9D40005E7567 /* CalculateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateViewModel.swift; sourceTree = "<group>"; };
 		3A00E6131E7BA501005E7567 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = ../Stack.swift; sourceTree = "<group>"; };
+		3A760D581E7D0DC40008D144 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		3AD6A7641E6F02D400D1C7EB /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD6A7671E6F02D400D1C7EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AD6A7691E6F02D400D1C7EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				3AD6A76E1E6F02D400D1C7EB /* Assets.xcassets */,
 				3AD6A7701E6F02D400D1C7EB /* LaunchScreen.storyboard */,
 				3AD6A7731E6F02D400D1C7EB /* Info.plist */,
+				3A760D581E7D0DC40008D144 /* Operation.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				3A00E6141E7BA501005E7567 /* Stack.swift in Sources */,
 				3AD6A76A1E6F02D400D1C7EB /* ViewController.swift in Sources */,
 				3A00E6101E7B9D40005E7567 /* CalculateViewModel.swift in Sources */,
+				3A760D591E7D0DC40008D144 /* Operation.swift in Sources */,
 				3AD6A7681E6F02D400D1C7EB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

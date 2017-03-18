@@ -8,7 +8,12 @@
 
 import Foundation
 
-enum DispalyKeyPad: Int {
+enum KeyValueOp {
+    case NumericKey(Int)
+    case OperatorKey(String)
+}
+
+enum DisplayKeyPad: Int {
     case
     Devide, Percent, Negate, AllClear,
     Multiply, Nine, Eight, Seven,
@@ -57,21 +62,58 @@ enum DispalyKeyPad: Int {
             return "0"
         }
     }
+    func pressed() -> KeyValueOp {
+        switch self {
+        case .Devide:
+            return KeyValueOp.OperatorKey("/")
+        case .Percent:
+            return KeyValueOp.OperatorKey("%")
+        case .Negate:
+            return KeyValueOp.OperatorKey("-")
+        case .AllClear:
+            return KeyValueOp.OperatorKey("AC")
+        case .Multiply:
+            return KeyValueOp.OperatorKey("*")
+        case .Nine:
+            return KeyValueOp.NumericKey(9)
+        case .Eight:
+            return KeyValueOp.NumericKey(8)
+        case .Seven:
+            return KeyValueOp.NumericKey(7)
+        case .Substract:
+            return KeyValueOp.OperatorKey("-")
+        case .Six:
+            return KeyValueOp.NumericKey(6)
+        case .Five:
+            return KeyValueOp.NumericKey(5)
+        case .Four:
+            return KeyValueOp.NumericKey(4)
+        case .Addition:
+            return KeyValueOp.OperatorKey("+")
+        case .Three:
+            return KeyValueOp.NumericKey(3)
+        case .Two:
+            return KeyValueOp.NumericKey(2)
+        case .One:
+            return KeyValueOp.NumericKey(1)
+        case .Equal:
+            return KeyValueOp.OperatorKey("=")
+        case .Decimal:
+            return KeyValueOp.OperatorKey(".")
+        case .Zero:
+            return KeyValueOp.NumericKey(0)
+        }
+    }
 }
 
 class CalculateViewModel {
     
-    enum KeyValue {
-        case NumberKey(Int)
-        case OperatorKey(String)
-    }
+    var modelOperation:Operation?
     
-    
-    
-    func execute(itemPressed:KeyValue) {
+    public func execute(itemPressed:KeyValueOp) {
         
         switch itemPressed {
-        case .NumberKey(let number):
+        case .NumericKey(let number):
             print("number pressed \(number)")
         case .OperatorKey(let arthOperator):
             print("operator pressed \(arthOperator)")
