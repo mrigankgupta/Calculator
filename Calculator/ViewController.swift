@@ -11,13 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     //MARK: - properties
     fileprivate let collectionViewCellIdentifier = "calcButtonIdentifier"
-    fileprivate let gapBtwButton:CGFloat = 2.0
+    fileprivate let gapBtwButton:CGFloat = 1.0
     fileprivate let row = 5
     fileprivate let column = 4
     fileprivate let totalButton = 19
-    fileprivate var horiInset:CGFloat = 0.0
-    fileprivate var vertInset:CGFloat = 0.0
-    fileprivate var inset:UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 
     fileprivate var viewModel:CalculateViewModel?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,7 +23,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         viewModel = CalculateViewModel()
-        inset = calculateInset()
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,10 +68,6 @@ extension ViewController: UICollectionViewDataSource {
             return 0
         }
     }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellIdentifier, for: indexPath)
@@ -102,14 +94,27 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         var buttonSize:CGSize = CGSize(width: Width, height: Height)
 
         if indexPath.item == totalButton-1 {
-            buttonSize = CGSize(width: 2*Width+horiInset, height: Height)
+            buttonSize = CGSize(width: Width*2.0+gapBtwButton, height: Height)
         }
         return buttonSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return inset
+        let viewRect:CGRect = self.collectionView.frame
+//        print("view rect for inset \(viewRect)")
+        let buttonMaxSize = maxPossibleButtonSize()
+        let totalWidth:CGFloat = buttonMaxSize*CGFloat(column) + CGFloat(column + 1)*gapBtwButton
+        let totalHeight:CGFloat = buttonMaxSize*CGFloat(row) + CGFloat(row + 1)*gapBtwButton
+        var horiInset = gapBtwButton
+        if viewRect.size.width > totalWidth {
+            horiInset = (viewRect.size.width - totalWidth)/CGFloat(2)+gapBtwButton
+        }
+        var vertInset = gapBtwButton
+        if viewRect.size.height > totalHeight {
+            vertInset = (viewRect.size.height - totalHeight)/CGFloat(2)+gapBtwButton
+        }
+//        print("vertical \(vertInset) horizontal \(horiInset)")
+        return UIEdgeInsets(top: vertInset, left: horiInset, bottom: vertInset, right: horiInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -141,22 +146,5 @@ private extension ViewController {
             return true
         }
         return false
-    }
-    func calculateInset() -> UIEdgeInsets {
-        let viewRect:CGRect = self.collectionView.bounds
-//        print("view rect for inset \(viewRect)")
-        let buttonMaxSize = maxPossibleButtonSize()
-        let totalWidth:CGFloat = buttonMaxSize*CGFloat(column) + CGFloat(column + 1)*gapBtwButton
-        let totalHeight:CGFloat = buttonMaxSize*CGFloat(row) + CGFloat(row + 1)*gapBtwButton
-        horiInset = gapBtwButton
-        if viewRect.size.width > totalWidth {
-            horiInset = (viewRect.size.width - totalWidth)/CGFloat(2)
-        }
-        vertInset = gapBtwButton
-        if viewRect.size.height > totalHeight {
-            vertInset = (viewRect.size.height - totalHeight)/CGFloat(2)
-        }
-//        print("vertical \(vertInset) horizontal \(horiInset)")
-        return UIEdgeInsets(top: vertInset, left: horiInset, bottom: vertInset, right: horiInset)
     }
 }
