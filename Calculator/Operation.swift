@@ -9,7 +9,7 @@
 import Foundation
 
 struct Operation {
-    var numeric: Stack<KeyValueOp>?
+    var record: Stack<KeyValueOp>?
     var operate: Stack<KeyValueOp>?
     
     

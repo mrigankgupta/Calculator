@@ -108,16 +108,33 @@ enum DisplayKeyPad: Int {
 
 class CalculateViewModel {
     
-    var modelOperation:Operation?
+    fileprivate var modelOperation:Operation?
+    var displayed:Double?
     
     public func execute(itemPressed:KeyValueOp) {
-        
         switch itemPressed {
         case .NumericKey(let number):
             print("number pressed \(number)")
+//            operatorNumeric(itemPressed)
         case .OperatorKey(let arthOperator):
             print("operator pressed \(arthOperator)")
         }
     }
     
 }
+
+//private extension CalculateViewModel {
+//    func operatorNumeric(_ itemPressed:KeyValueOp) {
+//        
+//        let lastElement:KeyValueOp? = modelOperation?.operate?.topItem
+//
+//        switch lastElement {
+//        case .NumericKey(let number):
+//            if let popped = modelOperation?.operate?.popSafe() {
+//                popped
+//            }
+//        case .OperatorKey(let arthOperator):
+//          
+//        }
+//    }
+//}

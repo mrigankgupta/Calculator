@@ -11,8 +11,16 @@ import Foundation
 struct Stack<Element> {
     var items = [Element]()
     
+    var topItem:Element? {
+        return items.isEmpty ? nil:items[items.count-1]
+    }
+    
+    mutating func popSafe()->Element? {
+        return items.popLast()
+    }
+    
     mutating func pop()->Element {
-        return items.removeLast()
+        return items.removeFirst()
     }
     
     mutating func push(_ newItem:Element) {
@@ -23,7 +31,4 @@ struct Stack<Element> {
         items.removeAll()
     }
     
-    var topItem:Element? {
-        return items.isEmpty ? nil:items[items.count-1]
-    }
 }

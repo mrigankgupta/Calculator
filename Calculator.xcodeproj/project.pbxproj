@@ -87,11 +87,11 @@
 				3AD6A7671E6F02D400D1C7EB /* AppDelegate.swift */,
 				3AD6A7691E6F02D400D1C7EB /* ViewController.swift */,
 				3A00E60F1E7B9D40005E7567 /* CalculateViewModel.swift */,
+				3A760D581E7D0DC40008D144 /* Operation.swift */,
 				3AD6A76B1E6F02D400D1C7EB /* Main.storyboard */,
 				3AD6A76E1E6F02D400D1C7EB /* Assets.xcassets */,
 				3AD6A7701E6F02D400D1C7EB /* LaunchScreen.storyboard */,
 				3AD6A7731E6F02D400D1C7EB /* Info.plist */,
-				3A760D581E7D0DC40008D144 /* Operation.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
