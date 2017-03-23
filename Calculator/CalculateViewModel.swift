@@ -9,8 +9,16 @@
 import Foundation
 
 enum KeyValueOp {
-    case NumericKey(Int)
+    case NumericKey(String)
     case OperatorKey(String)
+    func get()-> String {
+        switch self {
+        case .NumericKey(let number):
+            return number
+        case .OperatorKey(let operate):
+            return operate
+        }
+    }
 }
 
 enum DisplayKeyPad: Int {
@@ -75,33 +83,33 @@ enum DisplayKeyPad: Int {
         case .Multiply:
             return KeyValueOp.OperatorKey("*")
         case .Nine:
-            return KeyValueOp.NumericKey(9)
+            return KeyValueOp.NumericKey("9")
         case .Eight:
-            return KeyValueOp.NumericKey(8)
+            return KeyValueOp.NumericKey("8")
         case .Seven:
-            return KeyValueOp.NumericKey(7)
+            return KeyValueOp.NumericKey("7")
         case .Substract:
             return KeyValueOp.OperatorKey("-")
         case .Six:
-            return KeyValueOp.NumericKey(6)
+            return KeyValueOp.NumericKey("6")
         case .Five:
-            return KeyValueOp.NumericKey(5)
+            return KeyValueOp.NumericKey("5")
         case .Four:
-            return KeyValueOp.NumericKey(4)
+            return KeyValueOp.NumericKey("4")
         case .Addition:
             return KeyValueOp.OperatorKey("+")
         case .Three:
-            return KeyValueOp.NumericKey(3)
+            return KeyValueOp.NumericKey("3")
         case .Two:
-            return KeyValueOp.NumericKey(2)
+            return KeyValueOp.NumericKey("2")
         case .One:
-            return KeyValueOp.NumericKey(1)
+            return KeyValueOp.NumericKey("1")
         case .Equal:
             return KeyValueOp.OperatorKey("=")
         case .Decimal:
             return KeyValueOp.OperatorKey(".")
         case .Zero:
-            return KeyValueOp.NumericKey(0)
+            return KeyValueOp.NumericKey("0")
         }
     }
 }
@@ -109,32 +117,80 @@ enum DisplayKeyPad: Int {
 class CalculateViewModel {
     
     fileprivate var modelOperation:Operation?
-    var displayed:Double?
+    var displayed: String = ""
+    var current: Double = 0.0
     
+    init() {
+        modelOperation = Operation(record: Stack<KeyValueOp>(), operate: Stack<KeyValueOp>(), numeric: Stack<KeyValueOp>())
+    }
     public func execute(itemPressed:KeyValueOp) {
         switch itemPressed {
         case .NumericKey(let number):
             print("number pressed \(number)")
-//            operatorNumeric(itemPressed)
-        case .OperatorKey(let arthOperator):
-            print("operator pressed \(arthOperator)")
+            if current == 0.0 {
+                displayed.removeAll()
+            }
+            displayed.append(String(number))
+            if let displayValue = Double(displayed) {
+                current = displayValue
+            }
+
+        case .OperatorKey(let operate):
+            print("operator pressed \(operate)")
+            handleOperator(operate)
         }
+        print("displayed number \(displayed)")
+        print("resultant number \(current)")
     }
     
 }
 
-//private extension CalculateViewModel {
-//    func operatorNumeric(_ itemPressed:KeyValueOp) {
-//        
-//        let lastElement:KeyValueOp? = modelOperation?.operate?.topItem
-//
-//        switch lastElement {
-//        case .NumericKey(let number):
-//            if let popped = modelOperation?.operate?.popSafe() {
-//                popped
-//            }
-//        case .OperatorKey(let arthOperator):
-//          
-//        }
-//    }
-//}
+private extension CalculateViewModel {
+    
+    func handleOperator(_ operatorPressed:String) {
+        displayed.removeAll()
+        // current operator x/÷, handling operator presidence
+        if !(operatorPressed == "+" || operatorPressed == "-") && (operatorPressed == "*" || operatorPressed == "/") {
+            if let lastOperatorString = modelOperation?.operate?.topItem?.get() {
+                print("lastOperatorString \(lastOperatorString)")
+                if lastOperatorString == "*" || lastOperatorString == "/" {
+                    arthmaticOperation(arthOp: (modelOperation?.operate?.pop().get())!, lastNumber: Double((modelOperation?.numeric?.pop().get())!)!)
+                }
+                // previous is +/- and current operator x/÷
+                pushOperatorAndUpdateResult(operatorPressed)
+                return
+            }
+        }
+        // empty stacks for calculation, if presidence is not an issue
+        equate()
+        pushOperatorAndUpdateResult(operatorPressed)
+    }
+    
+    func arthmaticOperation(arthOp:String, lastNumber:Double) {
+        switch arthOp {
+        case "*":
+            current = lastNumber * current
+        case "/":
+            current = lastNumber / current
+        case "-":
+            current = lastNumber - current
+        case "+":
+            current = lastNumber + current
+        default:
+            break
+        }
+    }
+    func pushOperatorAndUpdateResult(_ operatorPressed:String) {
+        modelOperation?.operate?.push(.OperatorKey(operatorPressed))
+        print("operator pushed ...............\(operatorPressed)")
+        modelOperation?.numeric?.push(.NumericKey(String(current)))
+        print("numeric pushed ...............\(current)")
+        displayed.append(String(current))
+        current = 0.0
+    }
+    func equate() {
+        while (modelOperation?.numeric?.topItem) != nil && modelOperation?.operate?.topItem != nil {
+            arthmaticOperation(arthOp: (modelOperation?.operate?.pop().get())!, lastNumber: Double((modelOperation?.numeric?.pop().get())!)!)
+        }
+    }
+}

@@ -20,7 +20,7 @@ struct Stack<Element> {
     }
     
     mutating func pop()->Element {
-        return items.removeFirst()
+        return items.removeLast()
     }
     
     mutating func push(_ newItem:Element) {

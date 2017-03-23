@@ -18,6 +18,7 @@ class ViewController: UIViewController {
 
     fileprivate var viewModel:CalculateViewModel?
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var resultLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

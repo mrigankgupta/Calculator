@@ -95,6 +95,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="gfo-zu-d3K" id="RY2-QI-btV"/>
+                        <outlet property="resultLabel" destination="S0x-tC-OKJ" id="mNo-fN-GWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

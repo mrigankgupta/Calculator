@@ -11,6 +11,5 @@ import Foundation
 struct Operation {
     var record: Stack<KeyValueOp>?
     var operate: Stack<KeyValueOp>?
-    
-    
+    var numeric: Stack<KeyValueOp>?
 }
