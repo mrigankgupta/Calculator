@@ -53,7 +53,7 @@ extension ViewController: UICollectionViewDelegate {
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let keyPressed = DisplayKeyPad(rawValue: indexPath.item)?.pressed() {
+        if let keyPressed = DisplayKeyPad(rawValue: indexPath.item) {
             viewModel?.execute(itemPressed: keyPressed)
         }
     }
