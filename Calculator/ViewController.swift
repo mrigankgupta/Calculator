@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private var myContext = "ViewController"
     //MARK: - properties
     fileprivate let collectionViewCellIdentifier = "calcButtonIdentifier"
     fileprivate let gapBtwButton:CGFloat = 1.0
@@ -24,11 +25,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         viewModel = CalculateViewModel()
+        viewModel?.addObserver(self, forKeyPath: "displayed", options: .new, context: &myContext)
+    }
+    
+    deinit {
+        viewModel?.removeObserver(self, forKeyPath: "displayed", context: &myContext)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if context == &myContext {
+            if let newValue = change?[.newKey] as? String {
+                resultLabel.text = newValue
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
     }
 }
 

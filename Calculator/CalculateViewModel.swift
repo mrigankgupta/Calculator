@@ -109,14 +109,15 @@ enum DisplayKeyPad: Int {
     }
 }
 
-class CalculateViewModel {
+class CalculateViewModel: NSObject {
     
     fileprivate var modelOperation: Operation?
     fileprivate var currentNumber: Double = 0.0
     fileprivate var lastKeyPressed: DisplayKeyPad?
-    var displayed: String = ""
+    dynamic var displayed: String = ""
 
-    init() {
+    override init() {
+        super.init()
         modelOperation = Operation(record: Stack<String>(), operate: Stack<String>(), numeric: Stack<String>())
     }
     
@@ -223,6 +224,7 @@ private extension CalculateViewModel {
     func allClear() {
         currentNumber = 0.0
         displayed.removeAll()
+        displayed.append(String(0))
         modelOperation?.numeric?.empty()
         modelOperation?.operate?.empty()
     }
@@ -230,6 +232,9 @@ private extension CalculateViewModel {
         if let number = Double(item) {
             if number*number - Double(Int(number*number)) > 0 {
                 displayed.append(String(number))
+            }else if Double(displayed) == 0.0 {
+                displayed.removeAll()
+                displayed.append(String(Int(number)))
             }else {
                 displayed.append(String(Int(number)))
             }
