@@ -153,13 +153,16 @@ private extension CalculateViewModel {
             equate()
             displayed.removeAll()
             display(String(currentNumber))
-            currentNumber = 0.0
         }else if operatorPressed == .Decimal && !displayed.contains(".") {
             display(".")
         }else if operatorPressed == .Negate && currentNumber*currentNumber >= 0.0 {
             currentNumber = -currentNumber;
+            displayed.removeAll()
+            display(String(currentNumber))
         }else if operatorPressed == .Percent && currentNumber*currentNumber >= 0.0 {
             currentNumber = currentNumber / 100.0
+            displayed.removeAll()
+            display(String(currentNumber))
         }else {
             displayed.removeAll()
             // current operator x/÷, handling operator presidence
@@ -231,6 +234,7 @@ private extension CalculateViewModel {
                 displayed.append(String(Int(number)))
             }
         }else {
+            // decimal
             displayed.append(item)
         }
     }
